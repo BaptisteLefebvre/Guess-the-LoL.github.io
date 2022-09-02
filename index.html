@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the LoL</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="lol.png">
+    </header>
+    <div class="row">
+        <div class="Gamemode" id="gm1" onclick="display('1')">
+            <h1>Guess the abilitie</h1>
+        </div>
+        <div class="regle" id="1">
+            <div class="contenu">
+                <br>
+                Le but de ce mode est de trouver à qui appartient la capacité affiché et si c'est le passif , le A , le Z , le E ou le R.
+                Vous avez 10 secondes pour trouver la bonne réponse. Si vous vous trompez ou que vous ne répondez pas a temps alors la partie s'arrête.
+                Vous devez faire la plus grande série possible.
+
+                <button class="start">Commencer</button>
+                <button class="close" onclick="display('1')"> Fermer </button>
+            </div>
+        </div>
+        <div class="Gamemode" id="gm2" onclick="display('2')">
+            <h1>Guess the champion</h1>
+        </div>
+        <div class="regle" id="2">
+            <div class="contenu">
+                <br>
+                Le but de ce mode est de trouver quel champion est affiché.
+                Vous avez 10 secondes pour trouver la bonne réponse. Si vous vous trompez ou que vous ne répondez pas a temps alors la partie s'arrête.
+                Vous devez faire la plus grande série possible.
+
+                <button class="start">Commencer</button>
+                <button class="close" onclick="display('2')"> Fermer </button>
+            </div>
+        </div>
+        <div class="Gamemode" id="gm3" onclick="display('3')">
+            <h1>Guess the player</h1>
+        </div>
+        <div class="regle" id="3">
+            <div class="contenu">
+                <br>
+                Le but de ce mode est de trouver le nom du joueur affiché.
+                Vous avez 10 secondes pour trouver la bonne réponse. Si vous vous trompez ou que vous ne répondez pas a temps alors la partie s'arrête.
+                Vous devez faire la plus grande série possible.
+
+                <button class="start">Commencer</button>
+                <button class="close" onclick="display('3')"> Fermer </button>
+            </div>
+        </div>
+        <div class="Gamemode" id="gm4" onclick="display('4')">
+            <h1>Guess the skin</h1>
+        </div>
+        <div class="regle" id="4">
+            <div class="contenu">
+                <br>
+                Le but de ce mode est de trouver le nom du champion et quel est son skin.
+                Vous avez 10 secondes pour trouver la bonne réponse. Si vous vous trompez ou que vous ne répondez pas a temps alors la partie s'arrête.
+                Vous devez faire la plus grande série possible.
+
+                <button class="start">Commencer</button>
+                <button class="close" onclick="display('4')"> Fermer </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        const { createApp } = Vue
+        createApp({
+            data() {
+                return {
+                    questionList: []
+                }
+            },
+            methods: {
+
+            },
+            mounted() {
+                fetch('https://opentdb.com/api.php?amount=10&category=15&difficulty=easy&type=multiple')
+                    .then(response => response.json())
+                    .then(data => this.questionList.push(...data))
+            }
+        })
+
+        function display(div){
+            let doc = document.getElementById(div);
+            if(doc.style.display == 'block'){
+                doc.style.display = 'none';
+            }else{
+                doc.style.display = 'block';
+            }
+        }
+
+
+
+
+    </script>
+</body>
+</html>
